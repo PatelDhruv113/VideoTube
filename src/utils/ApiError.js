@@ -3,7 +3,7 @@ class ApiError extends Error {   // extends to Error class
         statusCode,
         message = "Something went wrong",
         errors = [],
-        stack = ""
+        stack = ""    // he stack information (or stack trace) is a detailed log of where an error occurred within your code, showing the series of function calls leading to the error. It is a vital tool for debugging, helping you trace back to the source of the problem.
     )
     {
         super(message)
