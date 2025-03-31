@@ -131,7 +131,7 @@ const deleteTweet = asyncHandler(async (req, res) => {
     }
 
     if (!(tweet.owner).equals(req.user?._id)) {
-        throw new ApiError(400, "You cannot update this tweet");
+        throw new ApiError(400, "You cannot delete this tweet");
     }
 
     const response = await Tweet.findByIdAndDelete(tweet._id)

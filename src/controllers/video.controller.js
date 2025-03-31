@@ -17,7 +17,7 @@ const getAllVideos = asyncHandler(async (req, res) => {
         {
             $match: {
                 $or:[       
-                    {title:{$regex: searchQuery, $options: "i"}},    //regex: pattern  //query: variable hold pattern    //options: case-sensitive
+                    {title:{$regex: searchQuery, $options: "i"}},    //regex: pattern  //query: variable hold pattern    //options: case-sensitive  - cat, CAT, Cat, caT
                     {description: {$regex: searchQuery, $options: "i"}}
                 ]
             }

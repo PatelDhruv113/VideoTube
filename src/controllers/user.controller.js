@@ -51,8 +51,9 @@ const registerUser = asyncHandler( async (req, res) => {
     }
      
     const existedUser = await User.findOne({
-       $or: [{ username }, { email }]      // operator $ use karine
+       $or: [{ username }, { email }]     
     })
+    
     if(existedUser) {
      throw new ApiError(409, "User with email or username already exists")
     }
@@ -61,7 +62,7 @@ const registerUser = asyncHandler( async (req, res) => {
 
     const avatarLocalPath = req.files?.avatar[0].path
     // const coverImageLocalPath = req.files?.coverImage[0].path
-    
+      
     let coverImageLocalPath;
     if(req.files && Array.isArray(req.files.coverImage) && req.files.coverImage.length > 0){
       coverImageLocalPath = req.files.coverImage[0].path
@@ -387,7 +388,7 @@ const getUserChannelProfile = asyncHandler(async(req, res) => {
           isSubscribed: {   //subscriber na list apnu name che k nahi?
             $cond: {
               if: {$in: [req.user?._id, "$subscribers.subscriber"]}, //<- subscriber - model varu
-               // $in use in array and Object both
+               // $//in use in array and Object both
               then: true,
               else: false,
             }

@@ -52,6 +52,7 @@ const getUserPlaylists = asyncHandler(async (req, res) => {
                 "Invalid userId"
             )
         }
+        
         const findPlaylist = await Playlist.aggregate(
             [
                 {
@@ -273,7 +274,7 @@ const addVideoToPlaylist = asyncHandler(async (req, res) => {
     }
 
     if(!(playList.owner).equals(req.user?._id)){
-        throw new ApiError(400, "You cannot add vod in this playlist")
+        throw new ApiError(400, "You cannot add video in this playlist")
     }
 
     const found = (playList.videos).filter(video => video.tostring() === videoId)
@@ -395,8 +396,8 @@ const updatePlaylist = asyncHandler(async (req, res) => {
     }
 
     if (!((findPlaylist.owner).equals(req.user?._id))){
-        throw new ApiError(
-            400, "You cannot delete it"
+        throw new ApiError(                                             
+            400, "You cannot delete it"                                                                                                                                                                                                                                                                                      
         )
     }
 
@@ -407,7 +408,7 @@ const updatePlaylist = asyncHandler(async (req, res) => {
                 name,
                 description
             }
-        },
+        },                                                  
         {new: true}
     )
 
